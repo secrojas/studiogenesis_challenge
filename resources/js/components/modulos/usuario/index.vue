@@ -15,7 +15,7 @@
 
         <div class="card-header">
           <div class="card-tools">
-              <router-link class="btn btn-info btn-sm" :to="'/'" style="color:white">
+              <router-link class="btn btn-info btn-sm" :to="'/usuarios/crear'" style="color:white">
                 <i class="fas fa-plus-square"></i> Nuevo usuario
               </router-link>
           </div>
@@ -35,7 +35,7 @@
                       <div class="form-group row">
                         <label class="col-md-3 col-form-laber">Nombre</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="fillBsqUsuario.cNombre">
+                          <input type="text" class="form-control" v-model="fillBsqUsuario.cNombre" @keyup.enter="getListadoUsuarios">
                         </div>
                       </div>
                     </div>
@@ -43,7 +43,7 @@
                       <div class="form-group row">
                         <label class="col-md-3 col-form-laber">Usuario</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="fillBsqUsuario.cUsuario">
+                          <input type="text" class="form-control" v-model="fillBsqUsuario.cUsuario" @keyup.enter="getListadoUsuarios">
                         </div>
                       </div>
                     </div>
@@ -51,7 +51,7 @@
                       <div class="form-group row">
                         <label class="col-md-3 col-form-laber">Email</label>
                         <div class="col-md-9">
-                          <input type="text" class="form-control" v-model="fillBsqUsuario.cCorreo">
+                          <input type="text" class="form-control" v-model="fillBsqUsuario.cCorreo" @keyup.enter="getListadoUsuarios">
                         </div>
                       </div>
                     </div>
@@ -243,7 +243,7 @@
             'cEstado': this.fillBsqUsuario.cEstado
           }
         }).then(response=>{
-          console.log(response.data);
+          this.inicializarPaginacion();
           this.listUsuarios = response.data;
         })
       },
@@ -256,6 +256,9 @@
       },
       selectPage(page){
         this.pageNumber=page;
+      },
+      inicializarPaginacion(){
+        this.pageNumber = 0;
       }
     }
   }

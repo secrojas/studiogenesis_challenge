@@ -9,8 +9,12 @@ export default new Router({
         {path: '/agenda', component:require('./components/modulos/agenda/index').default},
         {path: '/categorias', component:require('./components/modulos/categoria/index').default},
         {path: '/productos', component:require('./components/modulos/producto/index').default},
+       
+        {path: '/usuarios', component:require('./components/modulos/usuario/index').default},
+        {path: '/usuarios/crear', component:require('./components/modulos/usuario/create').default},
+
         {path: '/roles', component:require('./components/modulos/rol/index').default},
-        {path: '/usuarios', component:require('./components/modulos/usuario/index').default}
     ],
-    mode:'history'
+    mode:'history',
+    linkActiveClass: 'active'
 })
