@@ -16,7 +16,15 @@
                     <img :src="ruta + '/img/profile.png'" class="img-circle elevation-2" alt="Sebastian Rojas">
                 </div>
                 <div class="info">
-                    <a href="#" class="d-block">Sebastian Rojas</a>
+                    <a href="#" class="d-block">{{usuario.fullname}}</a>
+                </div>
+            </div>
+
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">                
+                <div class="info">
+                    <a href="#" class="d-block" @click.prevent="logout" v-loading.fullscreen.lock="fullscreenLoading">
+                        <i class="fas fa-sign-out-alt"></i> Cerrar Sesión                        
+                    </a>
                 </div>
             </div>
 
@@ -62,13 +70,7 @@
                             <i class="nav-icon fas fa-file"></i>
                             <p>Usuarios</p>
                         </router-link> 
-                    </li>
-                    <li class="nav-item">
-                        <router-link class="nav-link" :to="'/roles'">
-                            <i class="nav-icon fas fa-file"></i>
-                            <p>Roles</p>
-                        </router-link> 
-                    </li>                    
+                    </li>                                       
                 </ul>
             </nav>
       
@@ -79,7 +81,25 @@
 
 <script>
     export default {
-        props:['ruta']
+        props:['ruta', 'usuario'],
+        data() {
+            return {
+                fullscreenLoading: false
+            }
+        },
+        methods: {
+            logout(){
+                this.fullscreenLoading = true;
+                var url = 'authenticate/logout'
+                axios.post(url).then(response => {
+                    if (response.data.code == 204){
+                        this.$router.push({'name': 'login'})
+                        location.reload();
+                        this.fullscreenLoading = false;
+                    }                    
+                })
+            }
+        }
     }
 </script>
 
