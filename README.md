@@ -1,4 +1,4 @@
-<p align="center">StudioGesus Challenge</p>
+<p align="center">StudioGenesis Challenge</p>
 
 ## Descripción
 
