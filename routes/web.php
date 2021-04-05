@@ -22,6 +22,8 @@ Route::post('/administracion/usuario/setEditarUsuarios', 'Administracion\UserCon
 
 Route::post('archivo/setRegistrarArchivo','FilesController@setRegistrarArchivo');
 
+Route::get('/configuracion/categoria/getListadoCategorias', 'Configuracion\CategoriaController@getListadoCategorias');
+
 Route::get('/{optional?}', function () {
     return view('admin.dashboard');
 })->name('basepath')
